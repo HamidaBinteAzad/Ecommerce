@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% block title %} Login & Registration {% endblock %}
+
+{% block body %}
+
+        <!-- login area start -->
+        <div class="login-register-area pt-100px pb-100px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 col-md-12 ml-auto mr-auto">
+                        <div class="login-register-wrapper">
+                            <div class="login-register-tab-list nav">
+                                <a class="active" data-bs-toggle="tab" href="#lg1">
+                                    <h4>login</h4>
+                                </a>
+                                <a data-bs-toggle="tab" href="#lg2">
+                                    <h4>register</h4>
+                                </a>
+                            </div>
+                            <div class="tab-content">
+                                <div id="lg1" class="tab-pane active">
+                                    <div class="login-form-container">
+                                        <div class="login-register-form">
+                                            <form method='POST' action="{% url 'login' %}">
+                                                {% csrf_token %}
+                                                <!-- Inside the login form -->
+                                                {% if messages %}
+                                                {% for message in messages %}
+                                                <div class="alert alert-{{ message.tags }}">
+                                                    {{ message }}
+                                                </div>
+                                                {% endfor %}
+                                                {% endif %}
+
+                                                <input type="text" name="username" placeholder="Username" />
+                                                <input type="password" name="password" placeholder="Password" />
+                                                <div class="button-box">
+                                                    <div class="login-toggle-btn">
+                                                        <input type="checkbox" />
+                                                        <a class="flote-none" href="javascript:void(0)">Remember me</a>
+                                                        <a href="{% url 'forget_password' %}">Forgot Password?</a>
+                                                    </div>
+                                                    <button type="submit"><span>Login</span></button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="lg2" class="tab-pane">
+                                    <div class="login-form-container">
+                                        <div class="login-register-form">
+                                            <form method="POST" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                
+                                                <!-- Default User Fields -->
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-3">
+                                                        <label class="form-label">Username</label>
+                                                        <input type="text" name="username" class="form-control" required>
+                                                    </div>
+                                                    <div class="col-md-6 mb-3">
+                                                        <label class="form-label">Email</label>
+                                                        <input type="email" name="email" class="form-control" required>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-3">
+                                                        <label class="form-label">First Name</label>
+                                                        <input type="text" name="first_name" class="form-control">
+                                                    </div>
+                                                    <div class="col-md-6 mb-3">
+                                                        <label class="form-label">Last Name</label>
+                                                        <input type="text" name="last_name" class="form-control">
+                                                    </div>
+                                                </div>
+                    
+                                                <!-- Custom Fields -->
+                                                <div class="mb-3">
+                                                    <label class="form-label">Phone</label>
+                                                    <input type="text" name="phone" class="form-control" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Address</label>
+                                                    <input type="text" name="address" class="form-control" required>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4 mb-3">
+                                                        <label class="form-label">City</label>
+                                                        <input type="text" name="city" class="form-control" required>
+                                                    </div>
+                                                    <div class="col-md-4 mb-3">
+                                                        <label class="form-label">State</label>
+                                                        <input type="text" name="state" class="form-control" required>
+                                                    </div>
+                                                    <div class="col-md-4 mb-3">
+                                                        <label class="form-label">Country</label>
+                                                        <input type="text" name="country" class="form-control" required>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Zip Code</label>
+                                                    <input type="text" name="zip_code" class="form-control" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Profile Image</label>
+                                                    <input type="file" name="image" class="form-control">
+                                                </div>
+                    
+                                                <!-- Passwords -->
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-3">
+                                                        <label class="form-label">Password</label>
+                                                        <input type="password" name="password1" class="form-control" required>
+                                                    </div>
+                                                    <div class="col-md-6 mb-3">
+                                                        <label class="form-label">Confirm Password</label>
+                                                        <input type="password" name="password2" class="form-control" required>
+                                                    </div>
+                                                </div>
+                    
+                                                <div class="button-box">
+                                                    <button type="submit"><span>Register</span></button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- login area end -->
+
+{% endblock %}
