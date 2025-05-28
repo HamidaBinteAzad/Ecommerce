@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.conf import settings
 import random
 from django.contrib import messages
-
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -135,7 +135,7 @@ def verify_forget_pass(request):
 #     return render(request, 'auth/user_dashboard.html', {'user_data': user_data})
 
 # updated code
-
+@login_required(login_url='login')
 def user_dashboard(request):
     # Check if user is authenticated
     if not request.user.is_authenticated:
