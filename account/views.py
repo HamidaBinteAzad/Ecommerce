@@ -189,7 +189,7 @@ def update_profile(request, id):
         if password:
             user.set_password(password)
             user.save()
-            update_session_auth_hash(request, user)  # ✅ Keeps the user logged in after password change
+            update_session_auth_hash(request, user)  # Keeps the user logged in after password change
         else:
             user.save()
 

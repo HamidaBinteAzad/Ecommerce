@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} {{ product.name }} - Product Details {% endblock %}
+
+{% block body %}
+
+<!-- Product Details Area Start -->
+<div class="product-details-area pt-100px pb-100px">
+    <div class="container">
+        <div class="row">
+            <!-- Product Images -->
+            <div class="col-lg-6 col-sm-12 col-xs-12 mb-lm-30px mb-md-30px mb-sm-30px">
+                <div class="swiper-container zoom-top">
+                    <div class="swiper-wrapper">
+                        {% for image in product.images.all %}
+                        <div class="swiper-slide">
+                            <img class="img-responsive m-auto" src="{{ image.image.url }}" alt="{{ product.name }}">
+                            <a class="venobox full-preview" data-gall="myGallery" href="{{ image.image.url }}">
+                                <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        {% empty %}
+                        <div class="swiper-slide">
+                            <img class="img-responsive m-auto" src="{{ product.image.url }}" alt="{{ product.name }}">
+                            <a class="venobox full-preview" data-gall="myGallery" href="{{ product.image.url }}">
+                                <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Details Content -->
+            <div class="col-lg-6 col-sm-12 col-xs-12" data-aos="fade-up" data-aos-delay="200">
+                <div class="product-details-content quickview-content ml-25px">
+                    <h2>{{ product.name }}</h2>
+                    <div class="pricing-meta">
+                        <ul class="d-flex">
+                            <li class="new-price">${{ product.price }}</li>
+                        </ul>
+                    </div>
+                    <p class="mt-30px">{{ product.description }}</p>
+
+                    <div class="pro-details-categories-info pro-details-same-style d-flex m-0">
+                        <span>SKU:</span>
+                        <ul class="d-flex"><li>{{ product.sku }}</li></ul>
+                    </div>
+                    <div class="pro-details-categories-info pro-details-same-style d-flex m-0">
+                        <span>Category:</span>
+                        <ul class="d-flex"><li>{{ product.category.name }}</li></ul>
+                    </div>
+
+                    <!-- Quantity and Actions -->
+                    <div class="pro-details-quality">
+                        <div class="cart-plus-minus">
+                            <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
+                        </div>
+                        <div class="pro-details-cart">
+                            <button class="add-cart">Add To Cart</button>
+                        </div>
+                        <div class="pro-details-compare-wishlist pro-details-wishlist">
+                            <a href="#"><i class="pe-7s-like"></i></a>
+                        </div>
+                        <div class="pro-details-compare-wishlist pro-details-wishlist">
+                            <a href="#"><i class="pe-7s-refresh-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Related Products Section -->
+<div class="product-area related-product">
+    <div class="container">
+        <div class="section-title text-center m-0">
+            <h2 class="title">Related Products</h2>
+            <p>There are many variations of related products available</p>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="new-product-slider swiper-container slider-nav-style-1">
+                    <div class="swiper-wrapper">
+                        {% for related in related_products %}
+                        <div class="swiper-slide">
+                            <div class="product">
+                                <span class="badges"><span class="new">{{ related.condition }}</span></span>
+                                <div class="thumb" style="width:250px; height:250px; overflow:hidden;">
+                                    <a href="{% url 'single_product' related.id %}" class="image d-block w-100 h-100">
+                                        <img src="{{ related.image.url }}" alt="{{ related.name }}" style="width:100%; height:100%; object-fit:cover; object-position:center;">
+                                    </a>
+                                </div>
+                                <div class="content">
+                                    <span class="category"><a href="#">{{ related.category.name }}</a></span>
+                                    <h5 class="title">
+                                        <a href="{% url 'single_product' related.id %}">{{ related.name }}</a>
+                                    </h5>
+                                    <span class="price">
+                                        <span class="new">${{ related.price }}</span>
+                                    </span>
+                                </div>
+                                <div class="actions mt-auto">
+                                    <button title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"><i class="pe-7s-shopbag"></i></button>
+                                    <button class="action wishlist" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist"><i class="pe-7s-like"></i></button>
+                                    <button class="action quickview" title="Quick view" data-link-action="quickview" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-look"></i></button>
+                                    <button class="action compare" title="Compare" data-bs-toggle="modal" data-bs-target="#exampleModal-Compare"><i class="pe-7s-refresh-2"></i></button>
+                        </div>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <p>No related products found.</p>
+                        {% endfor %}
+                    </div>
+                    <div class="swiper-buttons">
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
