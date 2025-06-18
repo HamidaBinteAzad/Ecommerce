@@ -68,7 +68,7 @@
                     <img src="{% static 'assets/images/banner/3.webp' %}" alt="">
                     <div class="banner-content nth-child-1">
                         <h3 class="title">Smart Watch For <br>Your Hand</h3>
-                        <span class="category">From $29.00</span>
+                        <span class="category">From ৳29.00</span>
                         <a href="#" class="shop-link"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                     <img src="{% static 'assets/images/banner/4.webp' %}" alt="">
                     <div class="banner-content nth-child-2">
                         <h3 class="title">Headphones</h3>
-                        <span class="category">From $95.00</span>
+                        <span class="category">From ৳95.00</span>
                         <a href="#" class="shop-link"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
@@ -86,7 +86,7 @@
                     <img src="{% static 'assets/images/banner/5.webp' %}" alt="">
                     <div class="banner-content nth-child-3">
                         <h3 class="title">Smartphone</h3>
-                        <span class="category">From $69.00</span>
+                        <span class="category">From ৳69.00</span>
                         <a href="#" class="shop-link"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
@@ -133,11 +133,11 @@
 
                                         <!-- fixed-size box -->
                                         <div class="thumb" style="width:250px; height:250px; overflow:hidden;">
-                                            <a href="single-product.html" class="image d-block w-100 h-100">
+                                            <a href="{% url 'single_product' product.id %}" class="image d-block w-100 h-100">
                                             <img src="{{ product.image.url }}"
                                                 alt="{{ product.name }}"
                                                 style="width:100%; height:100%; object-fit:cover; object-position:center;" />
-                                            <img src="{% static 'assets/images/product-image/1.webp' %}"
+                                            <img src="{{ product.ex_image1.url }}"
                                                 alt="hover {{ product.name }}"
                                                 class="hover-image"
                                                 style="width:100%; height:100%; object-fit:cover; object-position:center;" />
@@ -147,15 +147,17 @@
                                         <div class="content flex-grow-1">
                                             <span class="category"><a href="#">{{ product.category }}</a></span>
                                             <h5 class="title"><a href="single-product.html">{{ product.name }}</a></h5>
-                                            <span class="price"><span class="new">${{ product.price }}</span></span>
+                                            <span class="price"><span class="new">৳{{ product.price }}</span></span>
                                         </div>
 
                                         <div class="actions mt-auto">
                                             <!-- your action buttons -->
                                         </div>
                                         <div class="actions">
-                                                <a href="{% url 'add_to_cart' product.id %}"><button title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"><i
-                                                    class="pe-7s-shopbag"></i></button></a>
+                                                <!-- <a href="{% url 'add_to_cart' product.id %}"><button title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"><i
+                                                    class="pe-7s-shopbag"></i></button></a> -->
+                                                <a href="{% url 'add_to_cart' product.id %}" class="action add-to-cart" title="Add To Cart">
+                                                <i class="pe-7s-shopbag"></i></a>
                                                 <button class="action wishlist" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist"><i
                                                         class="pe-7s-like"></i></button>
                                                 <button class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-look"></i></button>
@@ -180,11 +182,11 @@
 
                                         <!-- fixed-size box -->
                                         <div class="thumb" style="width:250px; height:250px; overflow:hidden;">
-                                            <a href="single-product.html" class="image d-block w-100 h-100">
+                                            <a href="{% url 'single_product' product.id %}" class="image d-block w-100 h-100">
                                             <img src="{{ product.image.url }}"
                                                 alt="{{ product.name }}"
                                                 style="width:100%; height:100%; object-fit:cover; object-position:center;" />
-                                            <img src="{% static 'assets/images/product-image/1.webp' %}"
+                                            <img src="{{ product.ex_image1.url }}"
                                                 alt="hover {{ product.name }}"
                                                 class="hover-image"
                                                 style="width:100%; height:100%; object-fit:cover; object-position:center;" />
@@ -194,7 +196,7 @@
                                         <div class="content flex-grow-1">
                                             <span class="category"><a href="#">{{product.category}}</a></span>
                                             <h5 class="title"><a href="single-product.html">{{ product.name }}</a></h5>
-                                            <span class="price"><span class="new">${{ product.price }}</span></span>
+                                            <span class="price"><span class="new">৳{{ product.price }}</span></span>
                                         </div>
 
                                         <div class="actions mt-auto">
@@ -202,8 +204,8 @@
                                              
                                         </div>
                                         <div class="actions">
-                                                <button title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"><i
-                                                    class="pe-7s-shopbag"></i></button>
+                                                <a href="{% url 'add_to_cart' product.id %}" class="action add-to-cart" title="Add To Cart">
+                                                <i class="pe-7s-shopbag"></i></a>
                                                 <button class="action wishlist" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist"><i
                                                         class="pe-7s-like"></i></button>
                                                 <button class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-look"></i></button>
@@ -228,11 +230,11 @@
                                             </span>
                                             <!-- fixed-size box -->
                                         <div class="thumb" style="width:250px; height:250px; overflow:hidden;">
-                                            <a href="single-product.html" class="image d-block w-100 h-100">
+                                            <a href="{% url 'single_product' product.id %}" class="image d-block w-100 h-100">
                                             <img src="{{ product.image.url }}"
                                                 alt="{{ product.name }}"
                                                 style="width:100%; height:100%; object-fit:cover; object-position:center;" />
-                                            <img src="{% static 'assets/images/product-image/1.webp' %}"
+                                            <img src="{{ product.ex_image1.url }}"
                                                 alt="hover {{ product.name }}"
                                                 class="hover-image"
                                                 style="width:100%; height:100%; object-fit:cover; object-position:center;" />
@@ -244,12 +246,12 @@
                                                     </a>
                                                 </h5>
                                                 <span class="price">
-                                                    <span class="new">${{product.price}}</span>
+                                                    <span class="new">৳{{product.price}}</span>
                                                 </span>
                                             </div>
                                             <div class="actions">
-                                                <button title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"><i
-                                                    class="pe-7s-shopbag"></i></button>
+                                                <a href="{% url 'add_to_cart' product.id %}" class="action add-to-cart" title="Add To Cart">
+                                                <i class="pe-7s-shopbag"></i></a>
                                                 <button class="action wishlist" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist"><i
                                                         class="pe-7s-like"></i></button>
                                                 <button class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-look"></i></button>
@@ -300,8 +302,8 @@
                             <div class="top-content">
                                 <h4 class="title"><a href="single-product.html">Bluetooth Headphone </a></h4>
                                 <span class="price">
-                            <span class="old"><del>$48.50</del></span>
-                                <span class="new">$38.50</span>
+                            <span class="old"><del>৳48.50</del></span>
+                                <span class="new">৳38.50</span>
                                 </span>
                             </div>
                             <div class="bottom-content">
@@ -328,8 +330,8 @@
                                 <div class="prize-content">
                                     <h5 class="title"><a href="single-product.html">Ladies Smart Watch</a></h5>
                                     <span class="price">
-                            <span class="old">$48.50</span>
-                                    <span class="new">$38.50</span>
+                            <span class="old">৳48.50</span>
+                                    <span class="new">৳38.50</span>
                                     </span>
                                 </div>
                                 <div class="product-feature">
@@ -356,8 +358,8 @@
                                 <div class="prize-content">
                                     <h5 class="title"><a href="single-product.html">Ladies Smart Watch</a></h5>
                                     <span class="price">
-                            <span class="old">$48.50</span>
-                                    <span class="new">$38.50</span>
+                            <span class="old">৳48.50</span>
+                                    <span class="new">৳38.50</span>
                                     </span>
                                 </div>
                                 <div class="product-feature">

@@ -38,7 +38,7 @@
                     <h2>{{ product.name }}</h2>
                     <div class="pricing-meta">
                         <ul class="d-flex">
-                            <li class="new-price">${{ product.price }}</li>
+                            <li class="new-price">৳{{ product.price }}</li>
                         </ul>
                     </div>
                     <p class="mt-30px">{{ product.description }}</p>
@@ -58,7 +58,8 @@
                             <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
                         </div>
                         <div class="pro-details-cart">
-                            <button class="add-cart">Add To Cart</button>
+                            <!-- <button class="add-cart">Add To Cart</button> -->
+                            <a href="{% url 'add_to_cart' product.id %}" class="action add-to-cart" title="Add To Cart"><button class="add-cart">Add To Cart</button></a>
                         </div>
                         <div class="pro-details-compare-wishlist pro-details-wishlist">
                             <a href="#"><i class="pe-7s-like"></i></a>
@@ -91,6 +92,7 @@
                                 <div class="thumb" style="width:250px; height:250px; overflow:hidden;">
                                     <a href="{% url 'single_product' related.id %}" class="image d-block w-100 h-100">
                                         <img src="{{ related.image.url }}" alt="{{ related.name }}" style="width:100%; height:100%; object-fit:cover; object-position:center;">
+                                        <img src="{{ related.ex_image1.url }}" alt="hover {{ related.name }}" class="hover-image" style="width:100%; height:100%; object-fit:cover; object-position:center;">
                                     </a>
                                 </div>
                                 <div class="content">
@@ -99,11 +101,11 @@
                                         <a href="{% url 'single_product' related.id %}">{{ related.name }}</a>
                                     </h5>
                                     <span class="price">
-                                        <span class="new">${{ related.price }}</span>
+                                        <span class="new">৳{{ related.price }}</span>
                                     </span>
                                 </div>
                                 <div class="actions mt-auto">
-                                    <button title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"><i class="pe-7s-shopbag"></i></button>
+                                    <a href="{% url 'add_to_cart' product.id %}" class="action add-to-cart" title="Add To Cart"><i class="pe-7s-shopbag"></i></a>
                                     <button class="action wishlist" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist"><i class="pe-7s-like"></i></button>
                                     <button class="action quickview" title="Quick view" data-link-action="quickview" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-look"></i></button>
                                     <button class="action compare" title="Compare" data-bs-toggle="modal" data-bs-target="#exampleModal-Compare"><i class="pe-7s-refresh-2"></i></button>
